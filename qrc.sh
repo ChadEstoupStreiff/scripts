@@ -13,8 +13,10 @@ fi
 # Check if url is set
 if [ $# -eq 0 ]
 then
-    echo "Precise a url"
-    exit 1
+    qrencode -o /tmp/qrcode.png "$(xclip -o)"
+else
+    qrencode -o /tmp/qrcode.png "$1"
 fi
 
-qrencode -o qrcode.png $1
+xdg-open /tmp/qrcode.png
+cp /tmp/qrcode.png ./qrcode.png
